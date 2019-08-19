@@ -77,7 +77,7 @@
                         <div class="form-group row">
                             <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Phone number') }}</label>
                             <div class="col-md-6">
-                                <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" required>
+                                <input id="phone_number" type="tel" placeholder="+38(000)000-00-00" pattern="^\+\d{2}\(\d{3}\)\d{3}-\d{2}-\d{2}$" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" required>
 
                                 @error('phone_number')
                                 <span class="invalid-feedback" role="alert">

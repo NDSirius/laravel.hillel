@@ -2,9 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\User;
+use App\Role;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
-use App\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +18,13 @@ use App\Role;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    $roleId = Role::where('name', '=', 'Customer')->first()->id;
+    $role = Role::where('name', '=',
+        Config::get('constants.db.roles.customer'))->first();
+
     return [
-        'name' => $faker->name,
-        'role_id' => $roleId ? $roleId : 1,
-        'surname' => $faker->lastName,
+        'name' => $faker->unique()->name,
+        'role_id' => $role->id,
+        'surname' => $faker->unique()->lastName,
         'email' => $faker->unique()->safeEmail,
         'birthday' => $faker->dateTimeBetween('-70 years', '-18 years')->format('Y-m-d'),
         'password' => $faker->password(8),

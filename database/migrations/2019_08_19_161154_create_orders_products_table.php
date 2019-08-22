@@ -13,14 +13,21 @@ class CreateOrdersProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders_products', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('products_id');
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('products_id')->references('id')->on('products');
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('orders_products')) {
+            Schema::create('orders_products', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->unsignedBigInteger('order_id');
+                $table->unsignedBigInteger('products_id');
+
+                $table->foreign('order_id')
+                    ->references('id')
+                    ->on('orders');
+                $table->foreign('products_id')
+                    ->references('id')
+                    ->on('products');
+
+            });
+        }
     }
 
     /**

@@ -13,10 +13,13 @@ class CreateProductGalleryTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_gallery', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('product_gallery')) {
+            Schema::create('product_gallery', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->text('path');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

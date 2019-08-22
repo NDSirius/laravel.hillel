@@ -13,16 +13,20 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title')->unique();
-            $table->string('description');
-            $table->string('short_description');
-            $table->string('sku')->unique();
-            $table->integer('price');
-            $table->integer('discount');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('products')) {
+            Schema::create('products', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('title')->unique();
+                $table->text('description');
+                $table->string('short_description', 30);
+                $table->string('sku', 15)->unique();
+                $table->float('price');
+                $table->float('discount')->nullable();
+                $table->unsignedBigInteger('in_stock');
+                $table->text('thumbnail');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

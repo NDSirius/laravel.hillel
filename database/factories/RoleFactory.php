@@ -6,8 +6,8 @@ use App\Role;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
-$factory->define(Role::class, function ($role) {
+$factory->define(Role::class, function (Faker $faker) {
     return [
-        'name' => $role,
+        'name' => $faker->name
     ];
 });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUsersForeignKeyOrders extends Migration
+class CreateOrderStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class AddUsersForeignKeyOrders extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-                $table->foreign('user_id')
-                    ->references('id')
-                    ->on('users');
-
+        if(!Schema::hasTable('order_statuses')) {
+            Schema::create('order_statuses', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('name', 14)->unique();
+                $table->timestamps();
             });
+        }
     }
 
     /**
@@ -28,8 +29,6 @@ class AddUsersForeignKeyOrders extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('order_statuses');
     }
 }

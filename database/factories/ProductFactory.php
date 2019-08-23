@@ -13,6 +13,6 @@ $factory->define(Product::class, function (Faker $faker) {
         'sku' => $faker->text(10),
         'price' => $faker->randomFloat(2, 1, 10000),
         'in_stock' => $faker->numberBetween(0, 15),
-        'thumbnail' => $faker->image('public/storage/images/product', 400, 400, null, true),
+        'thumbnail' => $faker->image('public/storage/images/products', 400, 400, null, true),
     ];
 });

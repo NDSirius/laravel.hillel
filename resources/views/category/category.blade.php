@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    Hello, this is a test11111
+    @foreach ($categories as $category)
+        <ul>
+            <li>
+                <a href="/category/showCategory/{{$category->id}}">{{$category->name}}</a>
+
+            </li>
+        </ul>
+    @endforeach
 @endsection

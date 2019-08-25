@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
                 $table->unsignedBigInteger('user_id');
                 $table->string('shipping_data_country', 30);
                 $table->string('shipping_data_city', 30);
-                $table->string('shipping_data_address', 30);
+                $table->string('shipping_data_address', 20);
                 $table->float('total_price');
                 $table->timestamps();
 

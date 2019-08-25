@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $table = 'categories';
 
     public function categories()
     {
@@ -20,6 +19,6 @@ class Product extends Model
 
     public function order()
     {
-        return $this->hasMany(App\Order::class);
+        return $this->belongsToMany(App\Order::class);
     }
 }

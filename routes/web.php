@@ -24,12 +24,16 @@ Route::get('/category', 'CategoryController@index')->name('category.index');
 Route::get('/category/showCategory/{id}', 'CategoryController@show')->name('category.show');
 
 
-Route::group(['middleware' => 'auth', 'as' => 'account'],
+Route::group(
+    [
+        'middleware' => 'auth',
+        'as' => 'account'
+    ],
     function(){
-    Route::get('/user', 'UsersController@index')->name('user.index');
-    Route::get('/myAccount', 'UsersController@account')->name('user.account');
-    Route::get('/myAccount/userEdit', 'UsersController@edit')->name('user.edit');
-    Route::post('/myAccount/userEdit', 'UsersController@update')->name('user.update');
+    Route::get('/user', 'UserController@index')->name('user.index');
+    Route::get('/myAccount', 'UserController@account')->name('user.account');
+    Route::get('/myAccount/userEdit', 'UserController@edit')->name('user.edit');
+    Route::post('/myAccount/userEdit', 'UserController@update')->name('user.update');
     });
 
 Route::group(
@@ -41,7 +45,9 @@ Route::group(
         Route::get('/admin', 'AdminController@index')->name('admin.index');
         Route::get('/users', 'Admin\UsersController@index')->name('admin.users');
         Route::get('/users/showUser/{id}', 'Admin\UsersController@show')->name('admin.userShow');
+        Route::get('/users/editUser/{id}', 'Admin\UsersController@edit')->name('admin.userEdit');
         Route::get('/orders', 'Admin\OrderController@index')->name('admin.orders');
         Route::get('/orders/showOrder/{id}', 'Admin\OrderController@show')->name('admin.orderShow');
+
 }
 );

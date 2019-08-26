@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,9 +18,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('user/user');
     }
 
+    public function account()
+    {
+        return view('user/myAccount');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -37,7 +46,7 @@ class UserController extends Controller
         //
     }
 
-    
+
     public function show($id)
     {
         //
@@ -49,9 +58,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('user/userEdit')->with('users', auth()->user());
+
     }
 
     /**
@@ -61,10 +71,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
     }
+
 
     /**
      * Remove the specified resource from storage.

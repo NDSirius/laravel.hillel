@@ -85,13 +85,9 @@
                 </div>
 
                 <div class="links">
-                    <a class="nav-link" href='/home'>Home</a>
                     <a href='/product'>Product</a>
                     <a href='/category'>Category</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+
                 </div>
             </div>
         </div>

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    @foreach ($users as $user)
+    @foreach ($orders as $order)
         <ul>
             <li>
 
-                <a href="users/showUser/{{$user->id}}">{{$user->surname}}</a>
+                <a href="orders/showOrder/{{$order->id}}">{{$order->id}}</a>
 
             </li>
         </ul>

@@ -2,7 +2,7 @@
 return [
     'db' => [
         'roles' => [
-            'admin' => 'Admin',
+            'admin' => 'admin',
             'customer' => 'Customer'
         ],
         'order_statuses' => [

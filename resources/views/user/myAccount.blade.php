@@ -66,7 +66,7 @@
 <body>
 <div class="flex-center position-ref full-height">
         <div class="top-right links">
-                <a href="{{ url('/myAccount/userEdit') }}">Edit</a>
+                <a href="{{ url('account/myAccount/userEdit') }}">Edit</a>
         </div>
 
     <div class="content">

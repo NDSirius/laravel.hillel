@@ -75,7 +75,7 @@
             <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
-                <a href="{{ url('/myAccount') }}">My Account</a>
+                <a href="{{ url('account/myAccount') }}">My Account</a>
         </div>
 
     <div class="content">

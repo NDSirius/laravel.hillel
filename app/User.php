@@ -48,15 +48,6 @@ class User extends Authenticatable
         )->first();
         return $this->role_id === $adminRole->id;
     }
-    public function change()
-    {
-        return User::update([
-        'name' => 'required|unique',
-        'surname' => 'required|unique',
-        'email' => 'required',
-        'birthday' => 'required',
-        'phone_number' => 'required'
-    ]);
-    }
+   
 
 }

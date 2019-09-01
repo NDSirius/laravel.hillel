@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserUpdateRequest;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -71,17 +73,18 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param UserUpdateRequest $request
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
     public function update(UserUpdateRequest $request, User $user)
     {
-        $user->name = request('name');
-        $user->surname = request('surname');
-        $user->email = request('email');
-        $user->birthday = request('birthday');
-        $user->phone_number = request('phone_number');
+
+        $user->name = $request['name'];
+        $user->surname = $request['surname'];
+        $user->email = $request['email'];
+        $user->birthday = $request['birthday'];
+        $user->phone_number = $request['phone_number'];
 
         $user->save();
 

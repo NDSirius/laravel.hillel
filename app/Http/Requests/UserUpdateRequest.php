@@ -23,11 +23,14 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'unique:users|min:5|max:30',
-            'surname' => 'unique:users|min:5|max:30',
-            'email' => 'unique:users',
 
+        return [
+            'name' => 'required|min:2|max:30',
+            'surname' => 'required|min:2|max:30',
+            'role_id' => 'required',
+            'phone_number' => 'required|max:20',
+            'birthday' => 'required|date',
+            'email' => 'required',
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,9 +44,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(User $user)
     {
-        //
+
     }
 
 
@@ -64,6 +65,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         return view('user/userEdit', compact('user'));
+
     }
 
     /**
@@ -73,31 +75,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        $this->validate(request(),
-            [
-                'name' => 'required|unique',
-                'surname' => 'required|unique',
-                'email' => 'required',
-                'birthday' => 'required',
-                'phone_number' => 'required'
-            ]);
-
         $user->name = request('name');
         $user->surname = request('surname');
         $user->email = request('email');
         $user->birthday = request('birthday');
         $user->phone_number = request('phone_number');
-
         $user->save();
         return back();
-
-
     }
 
 
-    /**
+        /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

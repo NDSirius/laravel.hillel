@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
+use App\Http\Requests\OrderCreateRequest;
 use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,7 +17,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('admin/orders/orders', ['orders' => Order::all()]);
+        $orders = Order::paginate(6);
+
+        return view('admin/orders/orders', ['orders' => $orders]);
     }
 
     /**
@@ -25,7 +29,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/orders/create');
     }
 
     /**
@@ -34,9 +38,21 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderCreateRequest $request)
     {
-        //
+        $categories = Category::lists('name', 'id');
+        $order = new Order();
+
+        $order->shipping_data_country = $request->shipping_data_country;
+        $order->shipping_data_city = $request->shipping_data_city;
+        $order->shipping_data_address = $request->shipping_data_address;
+        $order->total_price = $request->total_price;
+
+        $order->save();
+
+        $orders = Order::paginate(6);
+        return view('admin/orders/orders', ['orders' => $orders]);
+
     }
 
     /**

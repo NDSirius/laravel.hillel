@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
+use App\Http\Requests\CategoryCreateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/categories/create');
     }
 
     /**
@@ -33,10 +35,20 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryCreateRequest $request)
     {
-        //
+        $category = new Category();
+
+        $category->name = $request->name;
+        $category->description = $request->description;
+
+
+        $category->save();
+
+        $categories = Category::paginate(10);
+        return view('category/category', ['categories' => $categories]);
     }
+
 
     /**
      * Display the specified resource.

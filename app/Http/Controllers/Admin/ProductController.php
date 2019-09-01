@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
+use App\Http\Requests\ProductCreateRequest;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,18 +27,32 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::lists('name');
+        return view('admin/products/create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ProductCreateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductCreateRequest $request)
     {
-        //
+        $product = new Product();
+
+        $product->sku = $request->sku;
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->short_description = $request->short_description;
+        $product->price = $request->price;
+        $product->in_stock = $request->in_stock;
+        $product->thumbnail = $request->thumbnail;
+
+        $product->save();
+
+        $products = Product::paginate(7);
+        return view('product/product', ['products' => $products]);
     }
 
     /**
@@ -57,7 +74,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -69,7 +86,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
     }
 
     /**

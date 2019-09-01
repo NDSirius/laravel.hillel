@@ -7,7 +7,8 @@
                 <div class="card">
                     <div class="card-header">{{ __('Edit my Account') }}</div>
                     <div class="card-body">
-                        <form method="post" action="{{url('account/myAccount/userUpdate')}}">
+
+                        <form method="post" action="{{route('account.user.update', $user)}}">
                             @csrf
 
                             <div class="form-group row">

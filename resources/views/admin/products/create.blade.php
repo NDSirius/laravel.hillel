@@ -7,7 +7,7 @@
                 <h3 class="text-center">{{__('Create Product')}}</h3>
             </div>
             <div class="col-md-12">
-            <form action="{{route('adminproducts.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group row">
@@ -106,14 +106,6 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    {!! Form::label('Categories') !!}<br />
-                    {!! Form::select('categories[]',
-                    $categories,
-                    null,
-                    ['class' => 'form-control',
-                    'multiple' => 'multiple']) !!}
-                </div>
 
 
                 <div class="form-group row">

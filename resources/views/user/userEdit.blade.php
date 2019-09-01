@@ -6,6 +6,15 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Edit my Account') }}</div>
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="card-body">
 
                         <form method="post" action="{{route('account.user.update', $user)}}">
@@ -52,6 +61,7 @@
 
                                 </div>
                             </div>
+                            <input type="hidden" id="role_id" name="role_id" value="2">
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">

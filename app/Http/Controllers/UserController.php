@@ -82,8 +82,10 @@ class UserController extends Controller
         $user->email = request('email');
         $user->birthday = request('birthday');
         $user->phone_number = request('phone_number');
+
         $user->save();
-        return back();
+
+        return view('user/myAccount');
     }
 
 

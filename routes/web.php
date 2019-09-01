@@ -28,34 +28,35 @@ Route::group(
     [
         'prefix' => 'account',
         'middleware' => 'auth',
-        'as' => 'account'
+        'as' => 'account.'
     ],
     function(){
     Route::get('/user', 'UserController@index')->name('user');
-    Route::get('/myAccount', 'UserController@account')->name('.user.account');
-    Route::get('/myAccount/userEdit', 'UserController@edit')->name('.user.edit');
-    Route::post('/myAccount/userUpdate', 'UserController@update')->name('.user.update');
+    Route::get('/myAccount', 'UserController@account')->name('user.account');
+    Route::get('/myAccount/userEdit', 'UserController@edit')->name('user.edit');
+    Route::post('/myAccount/{user}/update', 'UserController@update')->name('user.update');
     });
 
 Route::group(
     [
+        'namespace' => 'Admin',
         'prefix' => 'admin',
         'middleware' => 'admin',
-        'as' => 'admin',
+        'as' => 'admin.',
     ],
     function (){
         Route::get('/admin', 'AdminController@index')->name('admin');
-        Route::get('/users', 'Admin\UsersController@index')->name('admin.users');
-        Route::get('/users/showUser/{id}', 'Admin\UsersController@show')->name('admin.userShow');
-        Route::get('/users/editUser/{id}', 'Admin\UsersController@edit')->name('admin.userEdit');
-        Route::get('/orders', 'Admin\OrderController@index')->name('admin.orders');
-        Route::get('/orders/showOrder/{id}', 'Admin\OrderController@show')->name('admin.orderShow');
-        Route::get('/products/create', 'Admin\ProductController@create')->name('products.create');
-        Route::post('/products/store', 'Admin\ProductController@store')->name('products.store');
-        Route::get('/category/create', 'Admin\CategoryController@create')->name('categories.create');
-        Route::post('/category/store', 'Admin\CategoryController@store')->name('categories.store');
-        Route::get('/orders/create', 'Admin\OrderController@create')->name('orders.create');
-        Route::post('/orders/store', 'Admin\OrderController@store')->name('orders.store');
+        Route::get('/users', 'UsersController@index')->name('admin.users');
+        Route::get('/users/showUser/{id}', 'UsersController@show')->name('admin.userShow');
+        Route::get('/users/editUser/{id}', 'UsersController@edit')->name('admin.userEdit');
+        Route::get('/orders', 'OrderController@index')->name('admin.orders');
+        Route::get('/orders/showOrder/{id}', 'OrderController@show')->name('admin.orderShow');
+        Route::get('/products/create', 'ProductController@create')->name('products.create');
+        Route::post('/products/store', 'ProductController@store')->name('products.store');
+        Route::get('/category/create', 'CategoryController@create')->name('categories.create');
+        Route::post('/category/store', 'CategoryController@store')->name('categories.store');
+        Route::get('/orders/create', 'OrderController@create')->name('orders.create');
+        Route::post('/orders/store', 'OrderController@store')->name('orders.store');
 
 
     }

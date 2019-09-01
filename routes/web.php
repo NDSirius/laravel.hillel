@@ -32,9 +32,9 @@ Route::group(
     ],
     function(){
     Route::get('/user', 'UserController@index')->name('user');
-    Route::get('/myAccount', 'UserController@account')->name('user.account');
-    Route::get('/myAccount/userEdit', 'UserController@edit')->name('user.edit');
-    Route::patch('/myAccount/userUpdate', 'UserController@update')->name('user.update');
+    Route::get('/myAccount', 'UserController@account')->name('.user.account');
+    Route::get('/myAccount/userEdit', 'UserController@edit')->name('.user.edit');
+    Route::post('/myAccount/userUpdate', 'UserController@update')->name('.user.update');
     });
 
 Route::group(
@@ -50,6 +50,13 @@ Route::group(
         Route::get('/users/editUser/{id}', 'Admin\UsersController@edit')->name('admin.userEdit');
         Route::get('/orders', 'Admin\OrderController@index')->name('admin.orders');
         Route::get('/orders/showOrder/{id}', 'Admin\OrderController@show')->name('admin.orderShow');
+        Route::get('/products/create', 'Admin\ProductController@create')->name('products.create');
+        Route::post('/products/store', 'Admin\ProductController@store')->name('products.store');
+        Route::get('/category/create', 'Admin\CategoryController@create')->name('categories.create');
+        Route::post('/category/store', 'Admin\CategoryController@store')->name('categories.store');
+        Route::get('/orders/create', 'Admin\OrderController@create')->name('orders.create');
+        Route::post('/orders/store', 'Admin\OrderController@store')->name('orders.store');
 
-}
+
+    }
 );

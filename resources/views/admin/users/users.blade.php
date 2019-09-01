@@ -10,4 +10,5 @@
             </li>
         </ul>
     @endforeach
+    {{$users->links()}}
 @endsection

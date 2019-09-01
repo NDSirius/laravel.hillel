@@ -9,4 +9,5 @@
             </li>
         </ul>
     @endforeach
+    {{$categories->links()}}
 @endsection

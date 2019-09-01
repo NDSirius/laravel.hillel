@@ -9,5 +9,7 @@
 
             </li>
         </ul>
+
     @endforeach
+    {{$orders->links()}}
 @endsection

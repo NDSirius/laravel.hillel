@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,6 +12,59 @@
 
     <!-- Styles -->
     <style>
+        nav {
+            margin: 100px 0;
+            background-color: #E64A19;
+        }
+
+        /* убираем отступы и поля, а также list-style для "ul",
+         * и добавляем "position:relative" */
+        nav ul {
+            padding:0;
+            margin:0;
+            list-style: none;
+            position: relative;
+        }
+
+        /* применяем inline-block позиционирование к элементам навигации */
+        nav ul li {
+            margin: 0px -7px 0 0;
+            display:inline-block;
+            background-color: #E64A19;
+        }
+
+        /* стилизуем ссылки */
+        nav a {
+            display:block;
+            padding:0 10px;
+            color:#FFF;
+            font-size:20px;
+            line-height: 60px;
+            text-decoration:none;
+        }
+
+        /* изменяем цвет фона при наведении курсора */
+        nav a:hover {
+            background-color: #000000;
+        }
+        nav ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+        }
+
+        /* отображаем выпадающий список при наведении */
+        nav ul li:hover > ul {
+            display:inherit;
+        }
+
+        /* первый уровень выпадающего списка */
+        nav ul ul li {
+            min-width:170px;
+            float:none;
+            display:list-item;
+            position: relative;
+        }
         html, body {
             background-color: #fff;
             color: #636b6f;
@@ -82,14 +136,36 @@
         <div class="title m-b-md">
             Amdin Page
         </div>
+        <nav>
+            <ul>
+                <li><a>Products</a>
+                    <ul>
+                        <li><a  href='/product'>Show products</a></li>
+                        <li><a href='products/create'>Create product</a></li>
+                    </ul>
+                </li>
+                <li><a >Categories</a>
+                    <ul>
+                        <li><a href='/category'>Show categories</a></li>
+                        <li><a href='category/create'>Create category</a></li>
+                    </ul>
+                </li>
+                <li><a >Users</a>
+                    <ul>
+                        <li><a href='/admin/users'>Show users</a></li>
+                    </ul>
+                </li>
+                <li><a >Orders</a>
+                    <ul>
+                        <li><a href='/admin/orders'>Show orders</a></li>
+                        <li><a href='/admin/orders/create'>Create orders</a></li>
 
-        <div class="links">
-            <a href='/product'>Products</a>
-            <a href='/category'>Categories</a>
-            <a href='/users'>Users</a>
-            <a href='/orders'>Orders</a>
+                    </ul>
+                </li>
 
-        </div>
+            </ul>
+        </nav>
+
     </div>
 </div>
 </body>

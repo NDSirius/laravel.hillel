@@ -7,9 +7,8 @@
                 <div class="card">
                     <div class="card-header">{{ __('Edit my Account') }}</div>
                     <div class="card-body">
-                        <form method="post" action="{{url('/myAccount/userUpdate', $user)}}">
+                        <form method="post" action="{{url('account/myAccount/userUpdate')}}">
                             @csrf
-                            @method('PATCH')
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>

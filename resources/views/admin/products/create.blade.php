@@ -106,6 +106,12 @@
                     </div>
                 </div>
 
+                <select multiple>
+                @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+                </select>
+
 
 
                 <div class="form-group row">

@@ -7,7 +7,7 @@
                 <h3 class="text-center">{{__('Create Category')}}</h3>
             </div>
             <div class="col-md-12">
-                <form action="{{route('admincategories.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('admin.categories.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group row">

@@ -40,7 +40,7 @@ class OrderController extends Controller
      */
     public function store(OrderCreateRequest $request)
     {
-        $categories = Category::lists('name', 'id');
+        //$categories = Category::lists('name', 'id');
         $order = new Order();
 
         $order->shipping_data_country = $request->shipping_data_country;

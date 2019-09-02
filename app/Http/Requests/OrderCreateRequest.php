@@ -24,9 +24,9 @@ class OrderCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'shipping_data_country' => 'required|unique:orders|min:5|max:50',
-            'shipping_data_city' => 'required|unique:orders|min:5|max:50',
-            'shipping_data_adsress' => 'required|unique:orders|min:5|max:50',
+            'shipping_data_country' => 'required|min:5|max:50',
+            'shipping_data_city' => 'required|min:5|max:50',
+            'shipping_data_address' => 'required|min:5|max:50',
             'total_price' => 'required|numeric|min:1',
         ];
     }

@@ -72,7 +72,7 @@
                 Logout
             </a>
 
-            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
 
@@ -85,8 +85,8 @@
         </div>
 
         <div class="links">
-            <a href='/product'>Product</a>
-            <a href='/category'>Category</a>
+            <a href="{{ route('product') }}">Product</a>
+            <a href="{{ route('category') }}">Category</a>
 
         </div>
     </div>

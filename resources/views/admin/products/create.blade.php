@@ -106,7 +106,9 @@
                     </div>
                 </div>
 
-                <select multiple>
+                <label for="selectcategory"
+                class="col-md-4 col-form-label text-md-right">{{ __('Choose Category') }}</label>
+                <select name="categories[]" id="categories" multiple="multiple">
                 @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
@@ -114,7 +116,9 @@
 
 
 
-                <div class="form-group row">
+
+
+                <div class="form-group row ">
                     <button type="submit" class="btn btn-primary">
                         {{ __('Create product') }}
                     </button>

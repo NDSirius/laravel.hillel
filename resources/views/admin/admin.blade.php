@@ -121,13 +121,14 @@
 
 <div class="flex-center position-ref full-height">
     <div class="top-right links">
-        <a href="{{ url('/logout') }}"
+
+        <a href="{{ route('logout') }}"
            onclick="event.preventDefault();
       document.getElementById('logout-form').submit();">
             Logout
         </a>
 
-        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
         </form>
     </div>
@@ -141,25 +142,26 @@
             <ul>
                 <li><a>Products</a>
                     <ul>
-                        <li><a  href='/product'>Show products</a></li>
-                        <li><a href='products/create'>Create product</a></li>
+                        <li><a  href="{{ route('product') }}">Show products</a></li>
+                        <li><a href="{{ route ('admin.products.create') }}">Create product</a></li>
                     </ul>
                 </li>
                 <li><a >Categories</a>
                     <ul>
-                        <li><a href='/category'>Show categories</a></li>
-                        <li><a href='category/create'>Create category</a></li>
+                        <li><a href="{{ route ('category') }}">Show categories</a></li>
+                        <li><a href="{{ route ('admin.categories.create') }}">Create category</a></li>
                     </ul>
                 </li>
                 <li><a >Users</a>
                     <ul>
-                        <li><a href='/admin/users'>Show users</a></li>
+                        <li><a href="{{ route ('admin.admin.users') }}">Show users</a></li>
                     </ul>
                 </li>
                 <li><a >Orders</a>
                     <ul>
-                        <li><a href='/admin/orders'>Show orders</a></li>
-                        <li><a href='/admin/orders/create'>Create orders</a></li>
+                        <li><a href="{{ route ('admin.admin.orders') }}">Show orders</a></li>
+                        <li><a href="{{ route ('admin.orders.create') }}">Create orders</a></li>
+                        <li><a href="{{ route ('admin.orders.edit') }}">Edit orders</a></li>
 
                     </ul>
                 </li>

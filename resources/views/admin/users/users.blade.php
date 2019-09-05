@@ -5,7 +5,7 @@
         <ul>
             <li>
 
-                <a href="users/showUser/{{$user->id}}">{{$user->surname}}</a>
+                <a href="{{ route ('admin.admin.userShow', $user->id)}}">{{$user->surname}}</a>
 
             </li>
         </ul>

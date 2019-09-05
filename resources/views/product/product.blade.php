@@ -13,13 +13,18 @@
                             <img src="storage/images/products/{{$product->thumbnail }}" height="250" width="350">
 
                             <div class="card-body">
-                                    <a href="product/showProduct/{{$product->id}}">{{$product->title}}</a>
+                                    <a href="{{ route('product.show', $product->id) }}">{{$product->title}}</a>
                                     <a>{{$product->short_description}}</a>
                                   <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <a href="{{ route('product.show', $product->id) }}"
+                                                   class="btn btn-sm btn-outline-dark">{{ __('Show') }}</a>
+                                            </div>
+                                        </div>
                                     </div>
-                                      <small class="text-muted">{{$product->price}}$</small>
+                                      <small class="text-muted">{{$product->getPrice()}}$</small>
                                 </div>
                             </div>
                         </div>

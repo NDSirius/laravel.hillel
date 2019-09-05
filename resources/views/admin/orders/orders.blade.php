@@ -5,7 +5,7 @@
         <ul>
             <li>
 
-                <a href="orders/showOrder/{{$order->id}}">{{$order->id}}</a>
+                <a href="{{ route('admin.admin.orderShow', $order->id)}}">{{$order->id}}</a>
 
             </li>
         </ul>

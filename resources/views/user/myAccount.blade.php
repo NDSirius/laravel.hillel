@@ -67,6 +67,7 @@
 <div class="flex-center position-ref full-height">
         <div class="top-right links">
                 <a href="{{ route('account.user.edit') }}">Edit</a>
+
         </div>
 
     <div class="content">

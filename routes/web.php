@@ -57,7 +57,17 @@ Route::group(
         Route::post('/category/store', 'CategoryController@store')->name('categories.store');
         Route::get('/orders/create', 'OrderController@create')->name('orders.create');
         Route::post('/orders/store', 'OrderController@store')->name('orders.store');
-
-
+        Route::get('/orders/edit', 'OrderController@edit')->name('orders.edit');
+        Route::post('/orders/{order}/update', 'OrderController@update')->name('orders.update');
     }
+);
+
+Route::middleware('auth')->group(function(){
+    Route::get('cart', 'CartController@index')->name('cart');
+    Route::post('cart/{product}/add', 'CartController@addToCart')->name('cart.add');
+    Route::post('cart/{product}/count/update', 'CartController@updateProductCount')->name('cart.count.update');
+    Route::post('cart/{product}', 'CartController@remove')->name('cart.remove');
+    Route::post('cart', 'CartController@destroy')->name('cart.destroy');
+}
+
 );

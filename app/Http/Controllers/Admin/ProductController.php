@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\CategorieProduct;
 use App\Category;
 use App\Http\Requests\ProductCreateRequest;
 use App\Product;
@@ -35,7 +36,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\ProductCreateRequest  $request
+     * @param \Illuminate\Http\ProductCreateRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(ProductCreateRequest $request)
@@ -50,11 +51,20 @@ class ProductController extends Controller
         $product->in_stock = $request->in_stock;
         $product->thumbnail = $request->thumbnail;
 
+
         $product->save();
+        dd($request->categories);
+        $request->input('categories');
+        $product->categories()->attach($request->input('categories'));
 
         $products = Product::paginate(7);
         return view('product/product', ['products' => $products]);
-    }
+
+
+        }
+
+
+
 
     /**
      * Display the specified resource.

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Requests\OrderCreateRequest;
+use App\Http\Requests\UpdateOrderRequest;
 use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -72,9 +73,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Order $order)
     {
-        //
+        return view('admin/orders/edit', compact('order'));
     }
 
     /**
@@ -84,9 +85,18 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateOrderRequest $request, Order $order)
     {
-        //
+        $order->shipping_data_country= $request['shipping_data_country'];
+        $order->shipping_data_city= $request['shipping_data_city'];
+        $order->shipping_data_address= $request['shipping_data_address'];
+        $order->total_price= $request['total_price'];
+
+        $order->save();
+
+        $orders = Order::paginate(6);
+
+        return view('admin/orders/orders', ['orders' => $orders]);
     }
 
     /**

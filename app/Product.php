@@ -21,4 +21,12 @@ class Product extends Model
     {
         return $this->belongsToMany(App\Order::class);
     }
+    public function getPrice()
+    {
+        return
+            $price = is_null($this->discount)
+                ? $this->price
+                : ($this->price - $this->discount);
+
+    }
 }

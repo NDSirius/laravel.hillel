@@ -1,8 +1,19 @@
 @extends('layouts.app')
-
+@inject('wishlist', 'App\Services\WishListService')
 @section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+            </div>
+        </div>
     <h1>{{ $products->title }}</h1>
         <h3>
+            <img src="storage/images/products/{{$products->thumbnail }}" height="250" width="350">
             <li>Description:  {{ $products->description }}</li>
             <li>SKU: {{$products->sku}}</li>
             <li>Price: {{$products->getPrice()}} $</li>
@@ -32,9 +43,19 @@
             </form>
         </div>
             </h1>
-                @endif
-        @endauth
+            @endif
+                    <hr>
+        @if($wishlist->isUserFollowed($products))
+                <form action="{{ route('wishlist.delete', $products) }}" method="POST">
+                    @csrf
 
+                    <button type="submit" class="btn btn-online-danger">Delete</button>
+                </form>
+            @else
+        <a href="{{ route('wishlist.add', $products) }}" class="btn btn-success"> {{__('Add to Wish List')}}</a>
+        @endif
+            @endauth
+    </div>
     </div>
 
 @endsection

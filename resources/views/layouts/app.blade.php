@@ -61,9 +61,18 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route ('cart')}}">{{__('Cart')}} <strong>{{Cart::count()}}</strong>
                                 </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route ('product')}}">{{__('Products')}}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route ('category')}}">{{__('Category')}} </a>
                             </li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

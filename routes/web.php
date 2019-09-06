@@ -35,6 +35,7 @@ Route::group(
     Route::get('/myAccount', 'UserController@account')->name('user.account');
     Route::get('/myAccount/userEdit', 'UserController@edit')->name('user.edit');
     Route::post('/myAccount/{user}/update', 'UserController@update')->name('user.update');
+    Route::get('wishlist', 'Account\WishListController@index')->name('wishlist');
     });
 
 Route::group(
@@ -68,6 +69,8 @@ Route::middleware('auth')->group(function(){
     Route::post('cart/{product}/count/update', 'CartController@updateProductCount')->name('cart.count.update');
     Route::post('cart/{product}', 'CartController@remove')->name('cart.remove');
     Route::post('cart', 'CartController@destroy')->name('cart.destroy');
+    Route::get('wishlist/{product}/add', 'WishListController@addToWishList')->name('wishlist.add');
+    Route::post('wishlist/{product}/delete', 'WishListController@deleteFromWishList')->name('wishlist.delete');
 }
 
 );

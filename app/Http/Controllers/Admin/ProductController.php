@@ -53,9 +53,11 @@ class ProductController extends Controller
 
 
         $product->save();
-        dd($request->categories);
-        $request->input('categories');
-        $product->categories()->attach($request->input('categories'));
+/*
+        if($request->has('categories')){
+            $product->categories()->attach($request->input('categories'));
+        }*/
+
 
         $products = Product::paginate(7);
         return view('product/product', ['products' => $products]);

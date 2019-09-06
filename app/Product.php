@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\User;
+use App\Pivots\WishList;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -21,6 +23,17 @@ class Product extends Model
     {
         return $this->belongsToMany(App\Order::class);
     }
+
+    public function followers()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'wishlist',
+            'product_id',
+            'user_id'
+        );
+    }
+
     public function getPrice()
     {
         return

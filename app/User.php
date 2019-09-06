@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Http\Controllers\UserController;
+use App\Pivots\WishList;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,6 +41,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(App\Order::class);
     }
+
+    public function wishes()
+    {
+        return $this->belongsToMany(Product::class,
+            'wishlist',
+            'user_id',
+            'product_id');
+    }
+
     public function isAdmin()
     {
         $adminRole = Role::where(
@@ -48,6 +58,17 @@ class User extends Authenticatable
             Config::get('constants.db.roles.admin')
         )->first();
         return $this->role_id === $adminRole->id;
+    }
+
+    public function addToWish(Product $product)
+    {
+        $this->wishes()->attach($product);
+    }
+
+    public function removeFromWish(Product $product)
+    {
+        $this->wishes()->detach($product);
+
     }
 
     public function instanceCartName()

@@ -16,6 +16,8 @@ class UserEventSubscriber
     {
         Cart::instance('cart')
             ->restore($event->user->instanceCartName());
+        Cart::instance('wishlist')
+            ->restore($event->user->instanceCartName());
     }
 
 
@@ -23,11 +25,16 @@ class UserEventSubscriber
      * Handle user logout events.
      */
     public function handleUserLogout($event) {
-        if(Cart::instance('cart')->count()>0){
+        if(Cart::instance('cart')->count()>0) {
             Cart::instance('cart')
                 ->store($event->user->instanceCartName());
         }
-    }
+            if(Cart::instance('wishlist')->count() > 0){
+                Cart::instance('wishlist')
+                    ->restore($event->user->instanceCartName());
+            }
+        }
+
 
     /**
      * Register the listeners for the subscriber.

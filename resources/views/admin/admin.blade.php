@@ -161,7 +161,7 @@
                     <ul>
                         <li><a href="{{ route ('admin.admin.orders') }}">Show orders</a></li>
                         <li><a href="{{ route ('admin.orders.create') }}">Create orders</a></li>
-                        <li><a href="{{ route ('admin.orders.edit') }}">Edit orders</a></li>
+
 
                     </ul>
                 </li>

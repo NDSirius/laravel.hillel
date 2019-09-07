@@ -106,7 +106,7 @@
                     </div>
                 </div>
 
-                <label for="selectcategory"
+                <label for="selectCategory"
                 class="col-md-4 col-form-label text-md-right">{{ __('Choose Category') }}</label>
                 <select name="categories[]" id="categories" multiple="multiple">
                 @foreach ($categories as $category)

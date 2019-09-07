@@ -53,6 +53,10 @@
                 </form>
             @else
         <a href="{{ route('wishlist.add', $products) }}" class="btn btn-success"> {{__('Add to Wish List')}}</a>
+                @if(Auth::user() && Auth::user()->role_id == 1)
+                    <a href="{{ route('admin.products.edit', $products) }}" class="btn btn-danger"> {{__('Edit Product')}}</a>
+                    <a href="{{ route('admin.products.delete', $products) }}" class="btn btn-danger"> {{__('Delete Product')}}</a>
+                @endif
         @endif
             @endauth
     </div>

@@ -54,6 +54,11 @@ Route::group(
         Route::get('/orders/showOrder/{id}', 'OrderController@show')->name('admin.orderShow');
         Route::get('/products/create', 'ProductController@create')->name('products.create');
         Route::post('/products/store', 'ProductController@store')->name('products.store');
+
+        Route::get('/products/edit/{product}', 'ProductController@edit')->name('products.edit');
+        Route::post('/products/update/{product}', 'ProductController@update')->name('products.update');
+        Route::get('/products/delete/{product}', 'ProductController@destroy')->name('products.delete');
+
         Route::get('/category/create', 'CategoryController@create')->name('categories.create');
         Route::post('/category/store', 'CategoryController@store')->name('categories.store');
         Route::get('/orders/create', 'OrderController@create')->name('orders.create');

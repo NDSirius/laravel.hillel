@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\CategorieProduct;
 use App\Category;
+use App\Order;
 use App\Http\Requests\ProductCreateRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Product;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
+use App\Http\Controllers\WishListController;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
 {
@@ -30,7 +36,7 @@ class ProductController extends Controller
     {
 
         $categories = Category::all();
-        return view('admin/products/create', compact('categories'));
+        return view('admin/products/create', ['categories' => $categories]);
     }
 
     /**
@@ -41,6 +47,12 @@ class ProductController extends Controller
      */
     public function store(ProductCreateRequest $request)
     {
+
+        $pathImage = $request->thumbnail->store(
+            "/images/products/{$request->sku}",
+            'public'
+        );
+
         $product = new Product();
 
         $product->sku = $request->sku;
@@ -49,21 +61,17 @@ class ProductController extends Controller
         $product->short_description = $request->short_description;
         $product->price = $request->price;
         $product->in_stock = $request->in_stock;
-        $product->thumbnail = $request->thumbnail;
+        $product->thumbnail = $pathImage;
 
-
-        $product->save();
-/*
-        if($request->has('categories')){
-            $product->categories()->attach($request->input('categories'));
-        }*/
-
-
-        $products = Product::paginate(7);
-        return view('product/product', ['products' => $products]);
-
-
+        if($product->save()){
+            foreach ($request->categories as $categoryId){
+                $product->categories()->attach($categoryId);
+            }
+            $products = Product::paginate(7);
+            return view('product/product', ['products' => $products]);
         }
+        return back();
+    }
 
 
 
@@ -88,6 +96,10 @@ class ProductController extends Controller
     public function edit($id)
     {
 
+        $product = Product::find($id);
+        $categories = Category::all();
+        return view('admin/products/edit', ['categories' => $categories])->with('products', $product);
+
     }
 
     /**
@@ -97,11 +109,23 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, Product $product)
     {
 
+        $product->sku = $request['sku'];
+        $product->title = $request['title'];
+        $product->description = $request['description'];
+        $product->short_description = $request['short_description'];
+        $product->price = $request['price'];
+        $product->in_stock = $request['in_stock'];
+        $product->thumbnail = $request['thumbnail'];
 
-    }
+        $product->save();
+
+        $products = Product::paginate(7);
+        return view('product/product', ['products' => $products])->with('success', 'Product has been updated');;
+
+        }
 
     /**
      * Remove the specified resource from storage.
@@ -111,6 +135,14 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->order()->detach();
+        $product->categories()->detach();
+        $product->followers()->detach();
+        $product->delete();
+        $products = Product::paginate(7);
+        return view('product/product', ['products' => $products])
+            ->with('success', 'Stock has been deleted Successfully');;
+
     }
 }

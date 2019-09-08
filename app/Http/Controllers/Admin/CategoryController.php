@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Product;
 use App\Http\Requests\CategoryCreateRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -69,7 +71,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::find($id);
+        return view('admin/categories/edit', ['categories' => $categories]);
     }
 
     /**
@@ -79,9 +82,15 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, Category $categories)
     {
-        //
+        $categories->name = $request['name'];
+        $categories->description = $request['description'];
+
+        $categories->save();
+
+        $categories = Category::paginate(10);
+        return view('category/category', ['categories' => $categories]);
     }
 
     /**
@@ -92,6 +101,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categories = Category::find($id);
+        $categories->products()->detach();
+        $categories->delete('cascade');
+        return view('category/category', ['categories' => $categories]);
     }
 }

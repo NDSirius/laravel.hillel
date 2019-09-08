@@ -59,6 +59,10 @@ Route::group(
         Route::post('/products/update/{product}', 'ProductController@update')->name('products.update');
         Route::get('/products/delete/{product}', 'ProductController@destroy')->name('products.delete');
 
+        Route::get('/category/edit/{category}', 'CategoryController@edit')->name('categories.edit');
+        Route::post('/category/update/{category}', 'CategoryController@update')->name('categories.update');
+        Route::get('/category/delete/{product}', 'CategoryController@destroy')->name('categories.delete');
+
         Route::get('/category/create', 'CategoryController@create')->name('categories.create');
         Route::post('/category/store', 'CategoryController@store')->name('categories.store');
         Route::get('/orders/create', 'OrderController@create')->name('orders.create');

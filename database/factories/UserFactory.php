@@ -19,7 +19,7 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     $role = Role::where('name', '=',
-        Config::get('constants.db.roles.customer'))->first();
+        Config::get('constants.db.roles.customer'))->first( );
 
     return [
         'name' => $faker->unique()->name,

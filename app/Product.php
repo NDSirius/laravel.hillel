@@ -22,7 +22,11 @@ class Product extends Model
 
     public function galleryImages()
     {
-        return $this->belongsToMany(ProductImage::class);
+        return $this->belongsToMany(ProductImage::class,
+            'product_gallery',
+            'id',
+            'path'
+        );
     }
 
     public function order()

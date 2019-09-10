@@ -67,9 +67,21 @@ class ProductController extends Controller
             foreach ($request->categories as $categoryId){
                 $product->categories()->attach($categoryId);
             }
+            if (!empty($request->product_gallery)) {
+                foreach ($request->product_gallery as $product_gallery) {
+                    $pathProductGallery = $product_gallery->store(
+                        "/images/products/{$request->sku}",
+                        'public'
+                    );
+                    $product->galleryImages()->attach(
+                        $pathProductGallery
+                    );
+                }
+            }
+        }
             $products = Product::paginate(7);
             return view('product/product', ['products' => $products]);
-        }
+
         return back();
     }
 

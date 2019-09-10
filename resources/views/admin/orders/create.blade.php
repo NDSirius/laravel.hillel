@@ -10,6 +10,41 @@
                 <form action="{{route('admin.orders.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
 
+
+
+                    <div class="form-group row">
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="name" type="text" class="form-control" name="surname" value="{{ old('surname') }}" autocomplete="surname" autofocus>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" autocomplete="email">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Phone number') }}</label>
+                        <div class="col-md-6">
+                            <input id="phone_number" type="tel" placeholder="+38(000)000-00-00" pattern="^\+\d{2}\(\d{3}\)\d{3}-\d{2}-\d{2}$" class="form-control" name="phone_number">
+
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <label for="shipping_data_country" class="col-md-4 col-form-label text-md-right">{{ __('shipping_data_country') }}</label>
 

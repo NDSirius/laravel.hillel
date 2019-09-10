@@ -52,6 +52,7 @@
                         <td colspan="2">&nbsp;</td>
                         <td>Total</td>
                         <td>{{Cart::total()}}</td>
+
                     </tr>
                     <form action="{{ route('cart.destroy') }}" method="POST">
                         @csrf
@@ -61,7 +62,12 @@
                 </table>
             </div>
                 </div>
+        <form action="{{ route('create.order') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-dark cart-options">Create Order</button>
+        </form>
             </div>
+
 
         </div>
     </div>

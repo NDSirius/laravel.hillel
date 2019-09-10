@@ -22,7 +22,7 @@ $factory->define(User::class, function (Faker $faker) {
         Config::get('constants.db.roles.customer'))->first( );
 
     return [
-        'name' => $faker->unique()->name,
+        'name' => $faker->unique()->name(25),
         'role_id' => $role->id,
         'surname' => $faker->unique()->lastName,
         'email' => $faker->unique()->safeEmail,

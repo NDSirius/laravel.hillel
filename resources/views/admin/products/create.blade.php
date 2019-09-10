@@ -106,6 +106,23 @@
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <label for="thumbnail"
+                           class="col-md-4 col-form-label text-md-right">{{ __('Product Gallery') }}</label>
+                    <div class="col-md-6">
+                        <input id="thumbnail" type="file"
+                               class="form-control @error('product_gallery') is-invalid @enderror"
+                               name="product_gallery[ ]" value="{{ old('product_gallery') }}"
+                               accept="image"
+                               autocomplete="product_gallery" multiple="multiple">
+                        @error('product_gallery')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+                </div>
+
                 <label for="selectCategory"
                 class="col-md-4 col-form-label text-md-right">{{ __('Choose Category') }}</label>
                 <select name="categories[]" id="categories" multiple="multiple">

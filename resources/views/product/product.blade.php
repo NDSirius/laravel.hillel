@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -13,9 +14,9 @@
                             <img src="storage/images/products/{{$product->thumbnail }}" height="250" width="350">
 
                             <div class="card-body">
-                                    <a href="{{ route('product.show', $product->id) }}">{{$product->title}}</a>
-                                    <a>{{$product->short_description}}</a>
-                                  <div class="d-flex justify-content-between align-items-center">
+                                <a href="{{ route('product.show', $product->id) }}">{{$product->title}}</a>
+                                <a>{{$product->short_description}}</a>
+                                <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
@@ -24,7 +25,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                      <small class="text-muted">{{$product->getPrice()}}$</small>
+                                    <small class="text-muted">{{$product->getPrice()}}$</small>
                                 </div>
                             </div>
                         </div>
@@ -43,8 +44,6 @@
     @endforeach
     {{$products->links()}}
 @endsection
-
-
 
 
 

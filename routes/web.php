@@ -80,6 +80,8 @@ Route::middleware('auth')->group(function(){
     Route::post('cart', 'CartController@destroy')->name('cart.destroy');
     Route::get('wishlist/{product}/add', 'WishListController@addToWishList')->name('wishlist.add');
     Route::post('wishlist/{product}/delete', 'WishListController@deleteFromWishList')->name('wishlist.delete');
+    Route::get('order/create' , 'OrderController@create')->name('create.order');
+    Route::post('order/store' , 'OrderController@store')->name('store.order');
 }
 
 );

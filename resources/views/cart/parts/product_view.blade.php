@@ -14,6 +14,8 @@
                         @csrf
                         <button type="submit" class="btn btn-dark cart-options">Remove</button>
                     </form>
+                </div>
+                </div>
         </form>
             </td>
     <td>{{$row->price}}</td>

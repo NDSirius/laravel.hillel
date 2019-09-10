@@ -2,7 +2,13 @@
 @inject('wishlist', 'App\Services\WishListService')
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="card mb-4 shadow-sm">
+            @if( Storage::has ($products->thumbnail))
+                <img src="{{ Storage::url($products->thumbnail) }}" height="400" width="400" class="card-img-top"
+                     style="max-width: 45%; margin: 0 auto; display: block;">
+            @endif
+
+            <div class="row">
             <div class="col-md-12">
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -13,7 +19,6 @@
         </div>
     <h1>{{ $products->title }}</h1>
         <h3>
-            <img src="storage/images/products/{{$products->thumbnail }}" height="250" width="350">
             <li>Description:  {{ $products->description }}</li>
             <li>SKU: {{$products->sku}}</li>
             <li>Price: {{$products->getPrice()}} $</li>

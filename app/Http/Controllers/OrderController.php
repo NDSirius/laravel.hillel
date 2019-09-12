@@ -17,9 +17,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view ('order/index');
+        $orders = auth()->user()->order()->get();
+        return view('order/index')->with('orders', $orders);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -37,9 +37,9 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OrderCreateRequest $request, User $user)
+    public function store(OrderCreateRequest $request)
     {
-        $order = Order::where('user_id' , $user->id);
+          $order = new Order();
           $order->shipping_data_country = $request['shipping_data_country'];
           $order->shipping_data_city = $request['shipping_data_city'];
           $order->shipping_data_address = $request['shipping_data_address'];

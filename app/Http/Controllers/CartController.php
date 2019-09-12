@@ -8,11 +8,19 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('cart/index');
     }
 
+    /**
+     * @param Request $request
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function addToCart(Request $request, Product $product)
     {
 
@@ -24,6 +32,12 @@ class CartController extends Controller
         );
         return redirect()->back();
     }
+
+    /**
+     * @param Request $request
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateProductCount(Request $request, Product $product)
     {
         if($product->in_stock < $request->product_count)
@@ -40,12 +54,20 @@ class CartController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param $rowId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function remove($rowId)
     {
         Cart::instance('cart')->remove($rowId);
         return redirect()
             ->back();
     }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy()
     {
         Cart::instance('cart')->destroy();

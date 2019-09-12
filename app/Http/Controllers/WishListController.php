@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class WishListController extends Controller
 {
+    /**
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function addToWishList(Product $product)
     {
         Auth()->user()->addToWish($product);
@@ -20,6 +24,11 @@ class WishListController extends Controller
         return redirect()->back()->with("status", "The product \"{$product->title}\" was added to wish list!");
     }
 
+    /**
+     * @param Request $request
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteFromWishList(Request $request, Product $product){
         Auth()->user()->removeFromWish($product);
         if(!empty($request->rowId)) {

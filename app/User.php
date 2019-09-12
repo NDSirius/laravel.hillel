@@ -34,12 +34,12 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->hasOne(App\Role::class);
+        return $this->hasOne(Role::class);
     }
 
     public function order()
     {
-        return $this->hasMany(App\Order::class);
+        return $this->hasMany(Order::class);
     }
 
     public function wishes()

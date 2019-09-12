@@ -8,9 +8,23 @@ use App\ProductImage;
 use App\Category;
 use App\Pivots\WishList;
 use Illuminate\Database\Eloquent\Model;
+use willvincent\Rateable\Rateable;
 
 class Product extends Model
 {
+    use Rateable;
+
+    protected $fillable = [
+        'id',
+        'title',
+        'sku',
+        'description',
+        'short_description',
+        'in_stock',
+        'thumbnail',
+        'discount',
+        'price'
+    ];
 
     public function categories()
     {
@@ -62,5 +76,10 @@ class Product extends Model
                 ? $this->price
                 : ($this->price - $this->discount);
 
+    }
+
+    public function getRatingProduct()
+    {
+        $this->ratings();
     }
 }

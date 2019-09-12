@@ -62,9 +62,13 @@
                 </table>
             </div>
                 </div>
-        <form action="{{ route('create.order') }}" method="POST">
+        <form action="{{ route('order.create') }}" method="GET">
             @csrf
             <button type="submit" class="btn btn-dark cart-options">Create Order</button>
+        </form>
+        <form action="{{ route('account.my-order') }}" method="GET">
+            @csrf
+            <button type="submit" class="btn btn-dark cart-options">My orders</button>
         </form>
             </div>
 

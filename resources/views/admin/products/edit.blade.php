@@ -114,10 +114,6 @@
                         @endforeach
                     </select>
 
-
-
-
-
                     <div class="form-group row ">
                         <button type="submit" class="btn btn-primary">
                             {{ __('Update product') }}
@@ -128,4 +124,5 @@
             </div>
         </div>
     </div>
+
 @endsection

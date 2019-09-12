@@ -11,7 +11,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <img src="storage/images/products/{{$product->thumbnail }}" height="250" width="350">
+                            @if( Storage::has ($product->thumbnail))
+                                <img src="{{ Storage::url($product->thumbnail) }}" height="400" width="400" class="card-img-top"
+                                     style="max-width: 100%; margin: 0 auto; display: block;">
+                            @endif
 
                             <div class="card-body">
                                 <a href="{{ route('product.show', $product->id) }}">{{$product->title}}</a>
